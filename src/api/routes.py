@@ -28,6 +28,7 @@ def token_maker():
 @api.route('/signup', methods=['POST'])
 def signup():
     data = request.json
+    print(data)
     user = User.query.filter_by(email=data.get("email", None)).first()
 
     if user:
@@ -45,6 +46,7 @@ def signup():
 @api.route('/login', methods=['POST'])
 def login():
     data = request.json
+    print(data)
     user = User.query.filter_by(email=data.get("email", None)).first()
 
     if not user or user.password != data.get("password", None):

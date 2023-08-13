@@ -16,7 +16,7 @@ export const Navbar = () => {
 					{!store.loggedIn ? <SignupAndLogin /> : (
 						<button 
 						className="btn btn-danger"
-						onClick={() => actions.login()}
+						onClick={() => actions.loginTest()}
 						>
 							Logout
 						</button>
