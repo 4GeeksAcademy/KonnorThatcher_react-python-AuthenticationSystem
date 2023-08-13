@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			loggedIn: false,
 			demo: [
 				{
 					title: "FIRST",
@@ -46,6 +47,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			login: () => {
+				const store = getStore()
+				const loginStatus = !store.loggedIn
+				setStore({loggedIn: loginStatus})
 			}
 		}
 	};

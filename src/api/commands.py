@@ -1,4 +1,4 @@
-
+import random
 import click
 from api.models import db, User
 
@@ -22,7 +22,7 @@ def setup_commands(app):
             user = User()
             user.email = "test_user" + str(x) + "@test.com"
             user.password = "123456"
-            user.is_active = True
+            user.lucky_number = random.randrange(1, 100)
             db.session.add(user)
             db.session.commit()
             print("User: ", user.email, " created.")
