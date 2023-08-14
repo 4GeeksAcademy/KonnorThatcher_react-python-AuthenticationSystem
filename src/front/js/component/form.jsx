@@ -1,13 +1,11 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useContext} from 'react'
 import { Context } from '../store/appContext'
 
-const LoginForm = ({formFunc}) => {
+const Form = ({formFunc, buttonText}) => {
     const { store, actions } = useContext(Context);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [success, setSuccess] = useState(true);
-
-    useEffect(() => {console.log("Token:", store.token)}, [])
     
     const handleSubmit = async (ev) => {
         ev.preventDefault()
@@ -15,8 +13,7 @@ const LoginForm = ({formFunc}) => {
         setEmail("")
         setPassword("")
     }
-
-    
+  
     return (
         <form onSubmit={handleSubmit}>
             <label>Email:</label>
@@ -25,10 +22,10 @@ const LoginForm = ({formFunc}) => {
             <label>Password:</label>
             <input type='password' value={password} onChange={(ev) => setPassword(ev.target.value)} />
 
-            {success ? "" : <p>"Something went wrong!"</p>}
-            <button className="btn btn-primary mt-2">Login</button>
+            {success ? "" : <div className='alert alert-warning mt-1 p-1 text-center'>"Invalid credentials!"</div>}
+            <button className="btn btn-primary mt-2">{buttonText}</button>
         </form>
     )
 }
 
-export default LoginForm
+export default Form

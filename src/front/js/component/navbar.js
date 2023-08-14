@@ -13,10 +13,10 @@ export const Navbar = () => {
 					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
 				</Link>
 				<div className="d-flex ml-auto">
-					{!store.loggedIn ? <SignupAndLogin /> : (
+					{!store.token ? <SignupAndLogin /> : (
 						<button 
 						className="btn btn-danger"
-						onClick={() => actions.loginTest()}
+						onClick={() => actions.logout()}
 						>
 							Logout
 						</button>

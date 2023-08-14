@@ -61,7 +61,6 @@ def top_secret():
     user = User.query.filter_by(email=get_jwt_identity()).first()
 
     return jsonify(
-        top_secret="https://image.tmdb.org/t/p/original/xsuEGorx2RcgtF6JKQjwYYrcr3E.jpg",
         email=user.email,
         lucky_number=user.lucky_number
     ), 200

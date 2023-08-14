@@ -9,7 +9,7 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			{!store.loggedIn ? <LoggedOutPage /> : <LoggedInPage />}			
+			{!store.token ? <LoggedOutPage /> : <LoggedInPage />}			
 		</div>
 	);
 };

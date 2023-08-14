@@ -1,14 +1,23 @@
-import React from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import { Context } from '../store/appContext'
 
 const LoggedInPage = () => {
-  return (
-    <div>
-        <h1>Congrats! You are logged in</h1>
-        <h2>Too bad there isn't anything on the page right now</h2>
-        <h2>This is the url for the API:</h2>
-        <h2>{process.env.BACKEND_URL}</h2>
-    </div>
-  )
+    const {store, actions} = useContext(Context)
+
+    useEffect(() => {
+        const controller = new AbortController()
+        actions.getUserData()
+        return () => controller.abort()
+    }, [])
+
+    return (
+        <div>
+            <h1>Congrats! You are logged in</h1>
+            <h2>Welcome, user with email {store.userData.email}!</h2>
+            <h2>Here is your lucky number:</h2>
+            <h2>{store.userData.lucky_number}</h2>
+        </div>
+    )
 }
 
 export default LoggedInPage

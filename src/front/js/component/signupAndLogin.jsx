@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { Context } from '../store/appContext'
-import LoginForm from './loginForm.jsx'
+import Form from './form.jsx'
 
 const SignupAndLogin = () => {
     const {store, actions} = useContext(Context)
@@ -14,10 +14,10 @@ const SignupAndLogin = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 >
-                    Signup
+                    Sign Up
                 </button>
                 <div className="dropdown-menu dropdown-menu-end p-2 me-0">
-                    <LoginForm formFunc={actions.signup} />
+                    <Form formFunc={actions.signup} buttonText={"Signup"} />
                 </div>
             </div>
             <div className='dropdown-center'>
@@ -27,10 +27,10 @@ const SignupAndLogin = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 >
-                    {!store.loggedIn ? "Login" : "Logout"}
+                    Log In
                 </button>
                 <div className="dropdown-menu dropdown-menu-end p-2 me-0">
-                    <LoginForm formFunc={actions.login}/>
+                    <Form formFunc={actions.login} buttonText={"Login"}/>
                 </div>
             </div>
         </>

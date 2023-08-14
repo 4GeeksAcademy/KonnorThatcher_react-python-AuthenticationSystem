@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			token: '',
+			userData: {},
 			loggedIn: false,
 			demo: [
 				{
@@ -48,11 +49,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			},
-			loginTest: () => {
-				const store = getStore()
-				const loginStatus = !store.loggedIn
-				setStore({loggedIn: loginStatus})
 			},
 			login: async (email, password) => {
 				const resp = await fetch(`${process.env.BACKEND_URL}api/login`, {
@@ -101,6 +97,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error("Error: ", error)
 					return false
 				}
+			},
+			getUserData: () => {
+				if (Object.keys(getStore().userData).length > 0) setStore({userData: {}})
+       			fetch(`${process.env.BACKEND_URL}api/private`, {
+       			    method: 'GET',
+       			    headers: {
+       			      Authorization: `Bearer ${getStore().token}`
+       			    }
+       			})
+       			.then(resp => resp.json())
+       			.then(data => setStore({userData: data}))
+				console.log(getStore().userData)
+			},
+			logout: () => {
+				console.log("Logging Out")
+				setStore({userData: {}})
+				setStore({token: ''})
 			}
 		}
 	};
