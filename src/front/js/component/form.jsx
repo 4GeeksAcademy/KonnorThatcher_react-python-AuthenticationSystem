@@ -1,8 +1,6 @@
-import React, {useState, useContext} from 'react'
-import { Context } from '../store/appContext'
+import React, {useState} from 'react'
 
 const Form = ({formFunc, buttonText}) => {
-    const { store, actions } = useContext(Context);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [success, setSuccess] = useState(true);

@@ -19,12 +19,6 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/test', methods=['GET'])
-def token_maker():
-    return jsonify(
-        token=create_access_token("Is this a valid token?")
-    )
-
 @api.route('/signup', methods=['POST'])
 def signup():
     data = request.json
